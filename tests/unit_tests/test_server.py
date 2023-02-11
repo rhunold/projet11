@@ -7,7 +7,7 @@ from tests.conftest import client
 from server import (clubs, competitions)
 
 valid_email = clubs[0]["email"]
-invalid_email = "raphael.hunold@gmail.com"
+invalid_email = "test@gmail.com"
     
 # tests Login 
 def test_login_valid_email(client):
