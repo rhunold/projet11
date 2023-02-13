@@ -29,8 +29,8 @@ def showSummary():
     try:
         club = [club for club in clubs if club['email'] == request.form['email']][0]
     except IndexError:
-        error_message = "Email not found !"
-        return render_template("index.html", error_message=error_message)
+        flash("Email not found !")
+        return render_template("index.html")
     else:
         return render_template('welcome.html',club=club,competitions=competitions)
 
@@ -51,9 +51,20 @@ def purchasePlaces():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
-    competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
-    flash('Great-booking complete!')
-    return render_template('welcome.html', club=club, competitions=competitions)
+    
+    if placesRequired <= 0:
+        flash("You can reserve less than 1 place.")
+        return render_template('booking.html', club=club, competition=competition)
+    elif placesRequired > int(club["points"]):
+        flash("You don't have enought points.")
+        return render_template('booking.html', club=club, competition=competition)
+
+    else:
+        competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
+        club["points"] = int(club["points"]) - placesRequired
+        flash("Great-booking complete!")
+        flash(f"{competition['name']} reserved places: {placesRequired}")
+        return render_template('welcome.html', club=club, competitions=competitions)
 
 
 # TODO: Add route for points display
@@ -64,4 +75,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=8000, debug=True)
