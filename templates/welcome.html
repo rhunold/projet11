@@ -1,20 +1,14 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary | GUDLFT Registration</title>
-</head>
-<body>
-        <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
+{% extends "base.html" %}
 
-    {% with messages = get_flashed_messages()%}
-    {% if messages %}
-        <ul>
-       {% for message in messages %}
-            <li>{{message}}</li>
-        {% endfor %}
-       </ul>
-    {% endif%}
+	{% block title %}Summary | GUDLFT Registration{% endblock %}
+
+	{% block content %}
+
+
+    <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
+
+    {% include 'message.j2' %}
+
     Points available: {{club['points']}}
     <h3>Competitions:</h3>
     <ul>
@@ -30,7 +24,6 @@
         <hr />
         {% endfor %}
     </ul>
-    {%endwith%}
 
-</body>
-</html>
+
+	{% endblock content %}
