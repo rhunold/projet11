@@ -19,12 +19,12 @@ def clubs_tests():
         {
             "name": "Simply Lift",
             "email": "john@simplylift.co",
-            "points": "11"
+            "points": "4"
         },
         {
             "name": "Iron Temple",
             "email": "admin@irontemple.com",
-            "points": "0"
+            "points": "40"
         },
         {
             "name": "She Lifts",
