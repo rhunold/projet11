@@ -45,3 +45,41 @@ def test_purchasePlaces_not_more_12points_per_competition(client, clubs_tests, c
     assert response.status_code == 200
     assert "You can\'t reserve more than 12 places for a competition." in data
 
+
+
+# If the competition date has passed, show an error message
+def test_cant_reserve_past_competition(client, clubs_tests, competitions_tests):
+    club_test = clubs_tests[0]['name']
+    competition_test = competitions_tests[0]['name']
+
+    response = client.get(f'/book/{competition_test}/{club_test}')
+    data = response.data.decode()
+    assert response.status_code == 200
+    assert "This competition has already taken place" in data
+    
+    
+# If the competition date has not been passed, allow to book places
+def test_can_reserve_futur_competition(client, clubs_tests, competitions_tests):
+    club_test = clubs_tests[0]['name']
+    competition_test = competitions_tests[1]['name']
+
+    response = client.get(f'/book/{competition_test}/{club_test}')
+    data = response.data.decode()
+    assert response.status_code == 200
+    assert "Places available" in data
+    
+    
+# Update Club point after booking
+def test_update_club_points_after_booking(client, clubs_tests, competitions_tests):
+    club_test = clubs_tests[1]
+    competition_test = competitions_tests[1]
+    places = 1
+    points_available = int(club_test["points"]) - places
+    response = client.post('/purchasePlaces', data={"club": club_test["name"],
+                                                    "competition": competition_test["name"],
+                                                    "places": places})
+
+    data = response.data.decode()
+
+    assert response.status_code == 200
+    assert f'{points_available}' in data    
