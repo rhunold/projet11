@@ -82,4 +82,15 @@ def test_update_club_points_after_booking(client, clubs_tests, competitions_test
     data = response.data.decode()
 
     assert response.status_code == 200
-    assert f'{points_available}' in data    
+    assert f'{points_available}' in data
+    
+
+# Test display list_clubs page
+def test_display_list_clubs_page(client, clubs_tests):
+    club_test = clubs_tests[1]    
+    response = client.get("/list_clubs")
+    data = response.data.decode()
+    assert f"{clubs_tests[0]['name']}" in data
+    assert response.status_code == 200
+
+# Test logout

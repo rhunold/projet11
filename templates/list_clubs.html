@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+	{% block title %}GUDLFT List Clubs{% endblock %}
+
+	{% block content %}
+
+    <a href="{{ url_for('index') }}">Return</a>
+    {% for club in clubs%}
+    <h3>Clubs:</h3>
+    <ul>
+        
+        <li>
+            {{club['name']}}<br />
+            Points: {{club['points']}}</br>
+        </li>
+        <hr />
+        
+    </ul>
+    {% endfor %}
+
+	{% endblock content %}
