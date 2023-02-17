@@ -94,3 +94,8 @@ def test_display_list_clubs_page(client, clubs_tests):
     assert response.status_code == 200
 
 # Test logout
+def test_logout(client):
+    response = client.get("/logout", follow_redirects=True)
+    data = response.data.decode()
+    assert response.status_code == 200
+    assert f"GUDLFT Registration" in data    
