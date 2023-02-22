@@ -71,7 +71,7 @@ def purchasePlaces():
         flash("You can't reserve more than 12 places for a competition.")
         return render_template('booking.html', club=club, competition=competition)    
     elif placesRequired > int(competition['numberOfPlaces']):
-        flash(f"You can't reserve {places_required} because there is only {competition['numberOfPlaces']} available.")
+        flash(f"You can't reserve {placesRequired} because there is only {competition['numberOfPlaces']} available.")
         return render_template('booking.html', club=club, competition=competition)
     else:
         competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
