@@ -4,18 +4,23 @@
 
 	{% block content %}
 
+
     <a href="{{ url_for('index') }}">Return</a>
-    {% for club in clubs%}
-    <h3>Clubs:</h3>
-    <ul>
-        
-        <li>
-            {{club['name']}}<br />
-            Points: {{club['points']}}</br>
-        </li>
-        <hr />
-        
-    </ul>
-    {% endfor %}
+
+    <h3>Clubs</h3>
+    <table style="border: 1px solid black;border-collapse: collapse;">
+        <tr>
+            <td  style="border: 1px solid black;border-collapse: collapse;">Club Name</td>
+            <td  style="border: 1px solid black;border-collapse: collapse;">Points</td>            
+        </tr>
+        {% for club in clubs%}
+        <tr>
+            <td  style="border: 1px solid black;border-collapse: collapse;">{{club['name']}}</td>
+            <td  style="border: 1px solid black;border-collapse: collapse;">{{club['points']}}</td>            
+        </tr> 
+        {% endfor %}              
+    </table>
+
+
 
 	{% endblock content %}
