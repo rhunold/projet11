@@ -29,7 +29,7 @@ def clubs_tests():
         {
             "name": "She Lifts",
             "email": "kate@shelifts.co.uk",
-            "points": "10"
+            "points": "13"
         }
     ]
 
@@ -47,7 +47,12 @@ def competitions_tests():
             "name": "Fall Classic",
             "date": "2025-10-10 10:00:00",
             "numberOfPlaces": "30"
-        }
+        },
+        {
+            "name": "Niagara Classic",
+            "date": "2025-10-10 10:00:00",
+            "numberOfPlaces": "5"
+        }        
 
     ]
     return server.competitions
