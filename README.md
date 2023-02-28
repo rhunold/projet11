@@ -21,7 +21,7 @@ python3 -m venv env
 
 ### Activate the environment
 ``` 
-python3 source env/bin/activate
+source env/bin/activate
 ```
 
 ### Install pip
